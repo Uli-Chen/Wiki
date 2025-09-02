@@ -1,0 +1,38 @@
+.back-to-top {
+  /* 固定在右下角 */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  /* 初始狀態：完全透明並隱藏 */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  z-index: 999; /* 確保按鈕位於其他內容之上 */
+}
+
+/* 顯示狀態：淡入 */
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top-icon {
+  width: 100px; /* 圖片大小 */
+  height: 100px;
+  border-radius: 50%; /* 圓形按鈕 */
+  cursor: pointer;
+  background-color: none; /* 按鈕背景色 */
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 添加陰影 */
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.back-to-top-icon:hover {
+  background-color: lightgray; /* 懸停時變色 */
+  transform: scale(1.1); /* 懸停時放大 */
+}

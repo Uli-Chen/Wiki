@@ -1,0 +1,81 @@
+.toc-container {
+  /* 定位與佈局 */
+  position: fixed; /* 將位置改為固定定位 */
+  top: 100px;
+  left: 0; /* 預設在左側，可以根據設計調整 */
+  margin-left: 20px;
+  padding: 24px;
+
+  /* 初始狀態：隱藏並向左平移 */
+  transform: translateX(-150%); /* 確保它完全隱藏在螢幕外 */
+  transition: transform 0.4s ease-out; /* 添加滑動過渡效果 */
+
+  /* 外觀與風格 */
+  background-color: none;
+  border-left: none; /* 移除左邊框，讓它看起來是從頁面外滑入 */
+  border-radius: 0 8px 8px 0; /* 調整邊角圓弧 */
+  font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  /*box-shadow: 4px 0 12px rgba(0, 0, 0, 0.05); /* 添加右側陰影 */
+}
+
+/* 顯示狀態：滑入 */
+.toc-container.is-visible {
+  transform: translateX(0);
+}
+
+/* 標題與列表樣式（保持不變） */
+.toc-title {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.toc-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  margin-bottom: 8px;
+}
+
+.toc-item a {
+  text-decoration: none;
+  color: #7f8c8d;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.toc-item a:hover {
+  background-color: #eaf0f6;
+  color: #34495e;
+}
+
+.toc-level-h1 a {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.toc-level-h2 a {
+  padding-left: 24px;
+}
+
+.toc-item a.active {
+  /*background-color: #3498db;*/
+  color: #3498db;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+  transform: translateX(5px);
+  font-size: 1em;
+  text-decoration: underline;
+}

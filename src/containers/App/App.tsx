@@ -7,6 +7,10 @@ import { Navbar } from "../../components/Navbar";
 import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
+import { Table } from "react-bootstrap";
+import TableOfContents from "../../components/TableOfContents";
+import BackToTopButton from "../../components/BackToTop";
+import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const App = () => {
   const pathMapping = getPathMapping();
@@ -27,7 +31,6 @@ const App = () => {
     <>
       {/* Navigation */}
       <Navbar />
-
       {/* Header and PageContent */}
       <Routes>
         {Object.entries(pathMapping).map(
@@ -37,14 +40,27 @@ const App = () => {
               path={path}
               element={
                 <>
+                  <ReadingProgressBar />
                   <Header title={title || ""} lead={lead || ""} />
-                  <div className="container">
+                  <div
+                    className={title === "Home" ? "" : "container"}
+                    id="content"
+                  >
                     <Component />
                   </div>
+                  {title !== "Home" && (
+                    <aside>
+                      <TableOfContents
+                        contentSelector="#content"
+                        contentKey={path}
+                      />
+                    </aside>
+                  )}
+                  <BackToTopButton></BackToTopButton>
                 </>
               }
             />
-          ),
+          )
         )}
         <Route
           path="*"

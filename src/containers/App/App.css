@@ -1,13 +1,34 @@
+/* Regular */
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-VariableFont_wdth,wght.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+root {
+  font-family: "Open Sans", Arial, sans-serif;
+  background-color: black;
+}
+
 body {
+  font-family: "Open Sans", sans-serif;
   padding-top: 56px;
+  background-color: black !important;
 }
 
 .left-aligned {
   margin-left: auto;
+  
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #000080, !important;
+}
+
+.bg-blue {
+  background-color: #001f66;
 }
 
 .bg-hero {
@@ -62,4 +83,485 @@ footer a {
 footer a:hover {
   color: white;
   text-decoration: underline;
+}
+
+.fullscreen-bg {
+  position: absolute; /* 固定在视口 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 占满宽度 */
+  height: 100%; /* 占满高度 */
+  object-fit: fill; /* 保持比例裁剪，填满容器 */
+  z-index: -1; /* 在内容后面 */
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  color: silver;
+  height: 100%;
+}
+
+/* 添加到你的 CSS 文件 */
+
+/* 導航欄可見時的狀態 */
+.navbar-visible {
+  transform: translateY(0);
+  /* 柔和的光暈效果 */
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+  backdrop-filter: blur(5px); /* 毛玻璃效果，讓背景更模糊 */
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明背景，能看到後方內容 */
+}
+
+/* 導航欄隱藏時的狀態 */
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+/* 導航連結的懸停效果 */
+.navbar .nav-link {
+  color: gray !important; /* 確保連結顏色為白色 */
+  position: right;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  /* 懸停時的發光效果 */
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #3498db;
+  color: #3498db !important; /* 懸停時變色 */
+}
+
+/*
+========
+HOMEPAGE
+========
+*/
+
+/* 页面整体 */
+.homepage {
+  font-family: "Open Snas", open-sans;
+  color: #f0f0f0;
+  background-color: none;
+  overflow-x: hidden;
+
+  /* background-image: url("/public/Background.png"); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;  */
+}
+
+/* 顶部背景区
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url("/public/Background.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+  position: relative;
+  font-size: 6rem;
+  text-align: center;
+  z-index: 2;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 3px;
+} */
+
+/* Container for the background video and content */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* 新增: 允许内容垂直堆叠 */
+  align-items: flex-start; /* 修改: 内部元素沿交叉轴（水平）左对齐 */
+  justify-content: center; /* 保持垂直居中 */
+  overflow: hidden;
+  padding-left: 10vw; /* 新增: 为内容添加左侧内边距，使其偏左 */
+}
+
+/* Styles for the background video element */
+.video-background {
+  position: fixed; /* 修改: 使用绝对定位脱离文档流 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place the video behind the overlay and text */
+}
+
+/* The overlay remains the same */
+.hero-section .overlay {
+  position: absolute; /* 修改: 使用绝对定位 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* The title remains the same */
+.hero-title {
+  position: relative;
+  font-size: 7rem;
+  /* text-align: center;  移除: 交由父容器控制对齐 */
+  z-index: 3;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  font-size: 3rem;
+  text-align: right; /* 右对齐 */
+  color: #e0e0e0;
+  z-index: 3;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+/* 星光闪烁特效 - 灰色和银色版本 */
+.sparkle {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0,
+    #a0a0a0,
+    #f5f5f5,
+    #a0a0a0,
+    #e0e0e0,
+    #a0a0a0,
+    #e0e0e0
+  );
+  background-size: 300% auto; /* 稍微增加背景尺寸以获得更长的渐变效果 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-silver 6s linear infinite; /* 调整动画名称和持续时间 */
+}
+
+@keyframes shine-silver {
+  /* 新的动画名称 */
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center; /* 保持从左到右移动 */
+  }
+}
+
+/* 文本与图片容器 */
+.p2container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 1200px;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+
+/* 文本框样式 */
+.text-box {
+  flex: 1;
+  /* border-radius: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); */
+  color: #f0f0f0;
+  line-height: 1.7;
+  /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); */
+  flex-direction: column-reverse;
+}
+
+/* 段落样式 - 增大字体并增加间距 */
+.text-box p {
+  margin: 20px 0;
+  font-size: 2rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+/* 突出数字样式 */
+.text-box p span.number {
+  font-size: 5rem; /* 大字体 */
+  font-weight: 600; /* 更粗，看起来更清晰 */
+  line-height: 1; /* 避免行高影响 */
+  background: linear-gradient(90deg, #ffd700, #ffec8b); /* 金色渐变 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px #ffd700,
+    0 0 25px #ffec8b;
+  display: inline-block;
+
+  transition: all 0.3s ease;
+}
+
+/* 旋转图像的容器 - 圆形设计 */
+.p1image-wrapper {
+  flex-shrink: 0;
+  position: relative; /* 保持 relative，以便子元素可以定位 */
+  width: 500px; /* 容器的可见宽度 */
+  height: 500px; /* 容器的可见高度 */
+  border-radius: 50%; /* 关键：设置为50%形成完美圆形 */
+  overflow: hidden; /* 隐藏超出容器的部分，形成圆形遮罩 */
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.2),
+    inset 0 0 50px rgba(0, 0, 0, 0.3); /* 添加内外阴影增强圆形效果 */
+  border: 2px solid rgba(255, 255, 255, 0.1); /* 添加微妙的边框 */
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    transparent 100%); /* 添加径向渐变背景 */
+}
+
+/* 添加光晕效果 */
+.p1image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05), 
+    transparent);
+  z-index: -1;
+  animation: glow-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* 圆形容器内的旋转图片 */
+.rotating-image {
+  width: 120%; /* 稍微放大图片，确保圆形裁剪效果 */
+  height: 120%; /* 保持图片比例 */
+  position: absolute;
+  top: 50%; /* 垂直居中 */
+  left: 50%; /* 水平居中 */
+  transform: translate(-50%, -50%) rotate(0deg); /* 居中并开始旋转 */
+  transform-origin: center center; /* 确保从中心旋转 */
+  animation: spin-and-shift 20s linear infinite;
+  object-fit: cover; /* 确保图片填充整个区域 */
+}
+
+@keyframes spin-and-shift {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg); /* 居中并开始旋转 */
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg); /* 居中并完成旋转 */
+  }
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .image-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  
+  /* 移动端圆形容器优化 */
+  .p1image-wrapper {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
+  
+  .rotating-image {
+    width: 110%;
+    height: 110%;
+  }
+}
+
+.content {
+  width: 100%;
+  height: 50%;
+  max-width: 1200px;
+  margin: 0 auto; /* 居中 */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10rem; /* 每个 section 之间的间距 */
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.section-img {
+  width: 50%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+
+.section-text {
+  flex: 1;
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  line-height: 1.7;
+  color: #f5f5f5;
+  background: rgba(0, 0, 0, 0); /* 半透明背景提高可读性 */
+  padding: 1.5rem;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0); */
+}
+
+.highlight-word {
+  font-weight: bold;
+  display: block; /* 让 GSAP 可以 scale */
+  font-size: 3rem;
+  text-align: left;
+  color: #ffd700;
+  animation: flicker 0.5s infinite;
+  text-shadow:
+    0 0 4px #ffd700,
+    0 0 8px #ffd700;
+  animation: flicker 2s ease-in-out forwards;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.2;
+    text-shadow: none;
+  }
+  10% {
+    opacity: 1;
+    text-shadow: 0 0 6px #ffd700;
+  }
+  20% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
+  30% {
+    opacity: 1;
+    text-shadow:
+      0 0 6px #ffd700,
+      0 0 10px #ffd700;
+  }
+  40% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px #ffd700,
+      0 0 15px #ffd700;
+  }
+  70% {
+    opacity: 0.7;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px #ffd700,
+      0 0 20px #ffd700;
+  }
+}
+
+/* 反向布局：图片在右，文字在左 */
+.section-reverse {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: row-reverse; /* 关键：左右顺序反转 */
+}
+
+.section-reverse .section-img {
+  width: 50%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+
+.section-reverse .section-text {
+  flex: 1;
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  line-height: 1.7;
+  color: #f5f5f5;
+  /* background: rgba(0, 0, 0, 0); 
+  padding: 1.5rem;
+  border-radius: 12px; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+}
+
+/*Footer*/
+.no-top-bg {
+  background: transparent; /* 整个背景透明 */
+}
+
+.split {
+  opacity: 1; /* 确保文字可见 */
+  text-align: center;
+  font-size: clamp(2rem, 5rem, 3vw);
+  font-family: "Mori", sans-serif;
+  letter-spacing: 0.05rem;
+  color: #0e100f;
+  overflow: hidden; /* 关键，制造 mask 效果 */
+}
+
+.masked-line {
+  overflow: hidden;
+  display: block;
+}
+
+.footer-with-bg-image {
+  /* 移除 Bootstrap 的背景色 */
+  background-color: transparent !important;
+  
+  /* 添加你的背景图片 */
+  background-image: url('/public/footer-gradient.webp'); /* 替换为你的图片路径 */
+  
+  /* 调整背景图片的显示方式 */
+  background-size: cover;          /* 让图片覆盖整个区域 */
+  background-position: center;     /* 图片居中显示 */
+  background-repeat: no-repeat;    /* 不重复图片 */
+  
+  /* 可选：为图片添加一个暗色叠加层，让文字更清晰 */
+  position: relative;
+  overflow: hidden; /* 确保伪元素不会溢出 */
 }

@@ -1,0 +1,33 @@
+:root {
+  --sunset: #cae5f7;
+}
+
+.parallax-container {
+  /* 確保容器可以滾動並佔據足夠空間來觸發動畫 */
+  min-height: 200vh;
+  position: relative;
+  overflow: hidden;
+}
+
+svg#parallax {
+  /* 將 SVG 固定在視口中央 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-width: 700px;
+  background: #182f3e;
+  border: solid 1px #c5cace;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border-radius: 4px;
+}
+
+/* 原始的 body 樣式現在應用於 parallax-container */
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}

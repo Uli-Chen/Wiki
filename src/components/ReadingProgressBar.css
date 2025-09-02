@@ -1,0 +1,17 @@
+/* 進度條的容器，固定在頁面頂部 */
+.progress-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* 進度條高度 */
+  background-color: #e0e0e0; /* 進度條未完成部分的背景色 */
+  z-index: 10000; /* 確保它位於所有其他內容之上 */
+}
+
+/* 進度條本身 */
+.progress-bar {
+  height: 100%;
+  background-color: #3498db; /* 進度條的顏色 */
+  transition: width 0.2s ease-out; /* 平滑的寬度變化過渡 */
+}
