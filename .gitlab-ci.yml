@@ -20,7 +20,7 @@ pages:
     paths:
       - public
   rules:
-    - if: $CI_COMMIT_BRANCH == "WebDemo"
+    - if: $CI_COMMIT_BRANCH == "WikiDemo"
       when: always
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: always
