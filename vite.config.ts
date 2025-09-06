@@ -14,6 +14,7 @@ export default () => {
     },
     base: `/${stringToSlug(env.VITE_TEAM_NAME)}/`,
     plugins: [react()],
+    base: '/Wiki/'，
   });
 };
 ``;
