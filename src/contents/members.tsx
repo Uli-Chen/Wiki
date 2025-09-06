@@ -1,13 +1,20 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 
-// ====== 資料 (採用版本二的完整資料) ======
+interface TeamMember {
+  name: string;
+  group: string;
+  field: string;
+  photo: string;
+  intro: string;
+}
+
 const teamMembers = [
   {
     name: "Yu Fu",
     group: "Wetlab Leader",
     field: "Biology",
-    photo: "/public/photos/fy.png",
+    photo: "https://placehold.co/100x100/db2777/ffffff?text=YF",
     intro:
       "I am passionate about bridging AI and biology. I focus on building interpretable ML models for gene expression analysis.",
   },
@@ -15,7 +22,7 @@ const teamMembers = [
     name: "Haobo Lin",
     group: "Drylab Leader",
     field: "Computer Science",
-    photo: "https://placehold.co/100x100/db2777/ffffff?text=BC",
+    photo: "https://placehold.co/100x100/db2777/ffffff?text=HL",
     intro:
       "I enjoy designing novel gene circuits and applying CRISPR technologies to real-world challenges.",
   },
@@ -45,8 +52,7 @@ const teamMembers = [
   },
 ];
 
-// ====== 卡片元件 (採用版本一的穩定結構) ======
-function TeamCard({ member }) {
+function TeamCard({ member }: { member: TeamMember }) {
   const cardRef = useRef(null); // 直接鎖定 .card 元素
   const [flipped, setFlipped] = useState(false);
 
@@ -81,7 +87,9 @@ function TeamCard({ member }) {
 
 // ====== 頁面元件 (採用版本二的佈局) ======
 export function Members() {
-  const leads = teamMembers.filter((m) => (m.group === "Drylab Leader" || m.group === "Wetlab Leader"));
+  const leads = teamMembers.filter(
+    (m) => m.group === "Drylab Leader" || m.group === "Wetlab Leader"
+  );
   const members = teamMembers.filter((m) => m.group === "Member");
 
   return (
@@ -112,20 +120,27 @@ export function Members() {
       <style>{`
         /* ====== 頁面 & 參考線 ====== */
         .page {
+          /* --- 您原有的樣式 --- */
           --silver: #c0c0c0;
           --glass: rgba(120, 120, 120, 0.18);
-          --glass-strong: rgba(140,140,140,0.28);
+          --glass-strong: rgba(140, 140, 140, 0.28);
           --text: #e6e6e6;
           min-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,0.08), transparent), #141414;
+          background: transparent;
           padding: 2.5rem 1.25rem 4rem;
           color: var(--text);
-          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+            "Helvetica Neue", Arial;
           position: relative;
           overflow: hidden;
+
+          /* --- 新增的寬度設定 --- */
+          width: 100%; /* 讓容器先嘗試填滿可用空間 */
+          max-width: 1200px; /* 設定內容的最大寬度，提升在寬螢幕上的可讀性 */
+          box-sizing: border-box; /* 確保 padding 和 border 不會增加元素的總寬度 */
         }
         .page::before {
           content: "";
@@ -236,4 +251,3 @@ export function Members() {
     </div>
   );
 }
-

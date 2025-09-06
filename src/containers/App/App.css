@@ -1,30 +1,36 @@
-/* Regular */
-@font-face {
-  font-family: "Open Sans";
-  src: url("/fonts/OpenSans-VariableFont_wdth,wght.ttf") format("ttf");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* index.css 或 App.css */
 
-root {
-  font-family: "Open Sans", Arial, sans-serif;
-  background-color: black;
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
+/* 2. 将 Open Sans 应用到整个应用 */
 body {
-  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  font-family:
+    "Open Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   padding-top: 56px;
   background-color: black !important;
+  color: silver !important;
 }
 
 .left-aligned {
   margin-left: auto;
-  
 }
 
 .bg-dark {
-  background-color: #000080, !important;
+  background-color: #000080 !important;
 }
 
 .bg-blue {
@@ -102,36 +108,80 @@ footer a:hover {
   height: 100%;
 }
 
-/* 添加到你的 CSS 文件 */
+/*
+========
+Wiki
+========
+*/
 
-/* 導航欄可見時的狀態 */
-.navbar-visible {
-  transform: translateY(0);
-  /* 柔和的光暈效果 */
-  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
-  backdrop-filter: blur(5px); /* 毛玻璃效果，讓背景更模糊 */
-  background-color: rgba(0, 0, 0, 0.6); /* 半透明背景，能看到後方內容 */
+/* app.css */
+
+/* 整个 wiki 正文容器 */
+.wiki-description {
+  max-width: 1100px; /* 控制正文宽度，居中收窄 */
+  margin: 2rem auto; /* 居中 + 上下间距 */
+  padding: 2rem;
+  background-color: #2f2f2f; /* 深灰背景 */
+  color: #ffffff; /* 白色字体 */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* 導航欄隱藏時的狀態 */
-.navbar-hidden {
-  transform: translateY(-100%);
+/* 标题样式 */
+.wiki-description h2,
+.wiki-description h3,
+.wiki-description h4 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  border-left: 4px solid #bbbbbb; /* 左侧银色竖线增强层次感 */
+  padding-left: 0.75rem;
 }
 
-/* 導航連結的懸停效果 */
-.navbar .nav-link {
-  color: gray !important; /* 確保連結顏色為白色 */
-  position: right;
-  transition: all 0.3s ease;
+/* 段落 */
+.wiki-description p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #f0f0f0;
 }
 
-.navbar .nav-link:hover {
-  /* 懸停時的發光效果 */
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #3498db;
-  color: #3498db !important; /* 懸停時變色 */
+/* 分割线 */
+.wiki-description hr {
+  border: 0;
+  height: 1px;
+  background: #555;
+  margin: 1.5rem 0;
+}
+
+/* 列表 */
+.wiki-description ul {
+  padding-left: 1.2rem;
+}
+
+.wiki-description li {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* 链接 */
+.wiki-description a {
+  color: #66b3ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.wiki-description a:hover {
+  text-decoration: underline;
+}
+
+/* 小屏幕优化 */
+@media (max-width: 768px) {
+  .wiki-section {
+    flex-direction: column;
+  }
 }
 
 /*
@@ -252,6 +302,7 @@ HOMEPAGE
     #e0e0e0
   );
   background-size: 300% auto; /* 稍微增加背景尺寸以获得更长的渐变效果 */
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine-silver 6s linear infinite; /* 调整动画名称和持续时间 */
@@ -307,6 +358,7 @@ HOMEPAGE
   font-weight: 600; /* 更粗，看起来更清晰 */
   line-height: 1; /* 避免行高影响 */
   background: linear-gradient(90deg, #ffd700, #ffec8b); /* 金色渐变 */
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
@@ -325,29 +377,33 @@ HOMEPAGE
   height: 500px; /* 容器的可见高度 */
   border-radius: 50%; /* 关键：设置为50%形成完美圆形 */
   overflow: hidden; /* 隐藏超出容器的部分，形成圆形遮罩 */
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(255, 255, 255, 0.2),
     inset 0 0 50px rgba(0, 0, 0, 0.3); /* 添加内外阴影增强圆形效果 */
   border: 2px solid rgba(255, 255, 255, 0.1); /* 添加微妙的边框 */
-  background: radial-gradient(circle, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 50%, 
-    transparent 100%); /* 添加径向渐变背景 */
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  ); /* 添加径向渐变背景 */
 }
 
 /* 添加光晕效果 */
 .p1image-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
   right: -10px;
   bottom: -10px;
   border-radius: 50%;
-  background: linear-gradient(45deg, 
-    rgba(255, 255, 255, 0.1), 
-    rgba(255, 255, 255, 0.05), 
-    transparent);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
   z-index: -1;
   animation: glow-pulse 3s ease-in-out infinite alternate;
 }
@@ -396,14 +452,14 @@ HOMEPAGE
     width: 300px;
     height: 300px;
   }
-  
+
   /* 移动端圆形容器优化 */
   .p1image-wrapper {
     width: 300px;
     height: 300px;
     border-radius: 50%;
   }
-  
+
   .rotating-image {
     width: 110%;
     height: 110%;
@@ -552,15 +608,15 @@ HOMEPAGE
 .footer-with-bg-image {
   /* 移除 Bootstrap 的背景色 */
   background-color: transparent !important;
-  
+
   /* 添加你的背景图片 */
-  background-image: url('/public/footer-gradient.webp'); /* 替换为你的图片路径 */
-  
+  background-image: url("/public/footer-gradient.webp"); /* 替换为你的图片路径 */
+
   /* 调整背景图片的显示方式 */
-  background-size: cover;          /* 让图片覆盖整个区域 */
-  background-position: center;     /* 图片居中显示 */
-  background-repeat: no-repeat;    /* 不重复图片 */
-  
+  background-size: cover; /* 让图片覆盖整个区域 */
+  background-position: center; /* 图片居中显示 */
+  background-repeat: no-repeat; /* 不重复图片 */
+
   /* 可选：为图片添加一个暗色叠加层，让文字更清晰 */
   position: relative;
   overflow: hidden; /* 确保伪元素不会溢出 */

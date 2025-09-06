@@ -43,7 +43,7 @@ const App = () => {
                   <ReadingProgressBar />
                   <Header title={title || ""} lead={lead || ""} />
                   <div
-                    className={title === "Home" ? "" : "container"}
+                    className={title === "Home" ? "" : "wiki-description"}
                     id="content"
                   >
                     <Component />

@@ -1,94 +1,68 @@
 import { Inspirations, InspirationLink } from "../components/Inspirations";
+import { ExpandableBar } from "../components/ExpandableBar";
+import { PDFViewer } from "../components/PdfViewer";
 
 export function Description() {
   const links: InspirationLink[] = [
     { year: 2024, teamName: "Heidelberg", pageName: "description" },
-    { year: 2024, teamName: "Marburg", pageName: "description" },
-    { year: 2024, teamName: "EPFL", pageName: "description" },
-    { year: 2024, teamName: "JU-Krakow", pageName: "description" },
-    { year: 2024, teamName: "UToronto", pageName: "description" },
-    { year: 2023, teamName: "Estonia-TUIT", pageName: "description" },
   ];
 
   return (
-    <>
-      <div className="row mt-4">
-        <div className="col">
-          <div className="bd-callout bd-callout-info">
-            <h4>Bronze Medal Criterion #1: Wiki</h4>
-            <p>Describe how and why you chose your iGEM project.</p>
-            <hr />
-            <p>
-              Visit the{" "}
-              <a href="https://competition.igem.org/judging/medals">
-                Medals page
-              </a>{" "}
-              for more information.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="wiki-description">
+      <h2>Project Description</h2>
+      <hr />
+      <p>
+        Our project aims to tackle an important challenge in synthetic biology.
+        By integrating computational design and experimental approaches, we seek
+        to provide a robust solution that can be applied to real-world problems.
+      </p>
 
-      <div className="row mt-4">
-        <div className="col-lg-8">
-          <h2>What Should this Page Contain?</h2>
-          <hr />
-          <ul>
-            <li>
-              Explain the problem your project addresses and its potential
-              impact.
-            </li>
-            <li>
-              Provide a clear and concise summary of your project's goals and
-              objectives.
-            </li>
-            <li>
-              Detail the specific reasons why your team chose this project.
-            </li>
-            <li>
-              Explain the inspiration behind your project, including any prior
-              research or real-world problems that motivated your team.
-            </li>
-            <li>
-              Use illustrations, diagrams, and other visual aids to enhance
-              understanding.
-            </li>
-            <li>
-              Include relevant scientific background, technical details, and
-              experimental approaches.
-            </li>
-          </ul>
-        </div>
-        <Inspirations inspirationLinkList={links} />
-      </div>
+      <p>
+        The motivation behind this project stems from both prior research and
+        urgent real-world needs. We carefully evaluated multiple directions
+        before selecting this project as the one with the most impact potential.
+      </p>
 
-      <div className="row mt-4">
-        <div className="col-lg-8">
-          <h2>Tips for Success</h2>
-          <hr />
-          <ul>
-            <li>
-              While providing detailed information, strive for clarity and
-              conciseness.
-            </li>
-            <li>Use summaries and subheadings to organize your content.</li>
-            <li>Utilize visuals to enhance understanding and engagement.</li>
-            <li>Document your research process and sources thoroughly.</li>
-          </ul>
-        </div>
-        <div className="col-lg-4">
-          <h2>References</h2>
-          <hr />
-          <p>
-            Cite all relevant research papers, scientific articles, and other
-            sources that informed your project.
-          </p>
-          <p>
-            Create a dedicated "References" section at the end of the page, and
-            use a consistent citation style.
-          </p>
-        </div>
-      </div>
-    </>
+      <h3>Key Objectives</h3>
+      <ul>
+        <li>Identify and address a pressing problem with broad relevance.</li>
+        <li>Develop a clear methodology combining dry lab and wet lab work.</li>
+        <li>Ensure scalability and reproducibility of our approach.</li>
+      </ul>
+
+      <p>
+        For more details, please refer to our{" "}
+        <a href="https://competition.igem.org/judging/medals">
+          official iGEM Medals page
+        </a>
+        .
+      </p>
+      <ExpandableBar title="Bronze Medal Criterion #1: Wiki">
+        <p>Describe how and why you chose your iGEM project.</p>
+        <p>
+          Visit the{" "}
+          <a
+            href="https://competition.igem.org/judging/medals"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Medals page
+          </a>{" "}
+          for more information.
+        </p>
+      </ExpandableBar>
+
+      <ExpandableBar title="Tips for Success">
+        <ul>
+          <li>Be clear and concise.</li>
+          <li>Use subheadings for organization.</li>
+          <li>Enhance with visuals.</li>
+          <li>Document your process thoroughly.</li>
+        </ul>
+      </ExpandableBar>
+      <ExpandableBar title="Example PDF">
+        <PDFViewer url="https://arxiv.org/pdf/1706.03762"></PDFViewer>
+      </ExpandableBar>
+    </div>
   );
 }

@@ -1,0 +1,91 @@
+.header {
+  width: 100%;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* 顶部标题 + 图片 */
+.header-top {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.header-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.header-text h1 {
+  font-size: 5rem;
+  margin-bottom: 16px;
+}
+
+.header-text p {
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.header-image {
+  margin-left: 10rem;
+  width: 300px;
+  height: 300px;
+  background: #333;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* 卡片区域 */
+.header-cards {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.card {
+  flex: 1;
+  min-width: 240px;
+  max-width: 300px;
+  background: #222;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

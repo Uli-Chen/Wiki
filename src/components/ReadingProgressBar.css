@@ -12,6 +12,6 @@
 /* 進度條本身 */
 .progress-bar {
   height: 100%;
-  background-color: #3498db; /* 進度條的顏色 */
+  background-color: #ff8d4b; /* 進度條的顏色 */
   transition: width 0.2s ease-out; /* 平滑的寬度變化過渡 */
 }

@@ -1,104 +1,109 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./TableOfContents.css";
 
-// 定義標題物件的型別
 interface Heading {
   id: string;
   text: string;
-  level: "H1" | "H2" | "H3"; // 假設你可能會用到 h3
+  level: "H1" | "H2" | "H3";
 }
 
 interface TableOfContentsProps {
-  // 指定要掃描的內容容器的選擇器，預設為 #page-content
   contentSelector?: string;
-  // 一個用來觸發組件更新的屬性，通常是當前頁面的路由路徑
   contentKey?: any;
+  headerSelector?: string; // 默认 header 元素
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({
   contentSelector = "#page-content",
   contentKey,
+  headerSelector = "header",
 }) => {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const headingElementsRef = useRef<{ [key: string]: HTMLElement }>({});
-  const revealPoint = 200;
 
-  // 1. 提取標題：當 contentSelector 或 contentKey 改變時重新執行
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  // 生成唯一 ID
+  const generateId = (text: string, index: number) =>
+    text
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "") +
+    "-" +
+    index;
+
+  // 提取标题
   useEffect(() => {
     const contentElement = document.querySelector(contentSelector);
-    if (!contentElement) {
-      console.warn(
-        `Content element with selector "${contentSelector}" not found.`
-      );
-      setHeadings([]);
-      return;
-    }
+    if (!contentElement) return;
 
-    const extractedHeadings: Heading[] = Array.from(
+    const elements = Array.from(
       contentElement.querySelectorAll<HTMLElement>("h1, h2, h3")
-    ).map((el) => {
-      const id =
-        el.id ||
-        el.textContent
-          ?.trim()
-          .toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^\w-]/g, "") ||
-        "";
+    );
+
+    const extractedHeadings: Heading[] = elements.map((el, index) => {
+      const id = el.id || generateId(el.textContent || "section", index);
       el.id = id;
-      headingElementsRef.current[id] = el;
       return {
         id,
         text: el.textContent || "",
         level: el.tagName as "H1" | "H2" | "H3",
       };
     });
+
     setHeadings(extractedHeadings);
-    setActiveId("");
-    setIsVisible(false); // 重置可見性，讓它重新判斷
   }, [contentSelector, contentKey]);
 
-  // 2. 監聽滾動事件來高亮和控制顯示
+  // 追踪 Header 是否离开视口
   useEffect(() => {
-    const handleScroll = () => {
-      const fromTop = window.scrollY + 100;
-      let newActiveId = "";
+    const headerEl = document.querySelector(headerSelector);
+    if (!headerEl) return;
 
-      for (const id in headingElementsRef.current) {
-        const el = headingElementsRef.current[id];
-        if (
-          el.offsetTop <= fromTop &&
-          el.offsetTop + el.offsetHeight > fromTop
-        ) {
-          newActiveId = id;
-          break;
-        }
-      }
-      setActiveId(newActiveId);
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(!entry.isIntersecting);
+        });
+      },
+      { threshold: 0 }
+    );
 
-      if (window.scrollY > revealPoint) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+    headerObserver.observe(headerEl);
+    return () => headerObserver.disconnect();
+  }, [headerSelector]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // 追踪当前标题
+  useEffect(() => {
+    if (observer.current) observer.current.disconnect();
 
-  // 點擊目錄項目時的平滑滾動
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    id: string
-  ) => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0.1 }
+    );
+
+    headings.forEach((heading) => {
+      const el = document.getElementById(heading.id);
+      if (el) observer.current?.observe(el);
+    });
+
+    return () => observer.current?.disconnect();
+  }, [headings]);
+
+  // 点击目录 → 平滑滚动
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const el = headingElementsRef.current[id];
-    if (el) {
+    const target = document.getElementById(id);
+    if (target) {
       window.scrollTo({
-        top: el.offsetTop - 80,
+        top: target.offsetTop - 80,
         behavior: "smooth",
       });
     }
@@ -106,6 +111,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   return (
     <nav className={`toc-container ${isVisible ? "is-visible" : "is-hidden"}`}>
+      <div className="toc-title">Contents</div>
       <ul>
         {headings.map((heading) => (
           <li
@@ -114,7 +120,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           >
             <a
               href={`#${heading.id}`}
-              onClick={(e) => handleLinkClick(e, heading.id)}
+              onClick={(e) => handleClick(e, heading.id)}
               className={heading.id === activeId ? "active" : ""}
             >
               {heading.text}

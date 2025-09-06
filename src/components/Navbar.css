@@ -1,0 +1,232 @@
+/* --- 基础样式和变量 --- */
+:root {
+  --navbar-height: 60px;
+  --navbar-font-color: lightgrey;
+  --navbar-font-hover-color: #eaeaea;
+  --navbar-bg-color: transparent;
+  /* --font-main: "Space Mono", monospace; */
+}
+
+/* --- 导航栏容器 --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: var(--navbar-height);
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  transition: top 0.4s ease-in-out;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #444 50%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  /* 新增：为线条的显隐增加过渡效果 */
+  transition: opacity 0.3s ease;
+}
+
+.navbar:has(.dropdown:hover)::after {
+  opacity: 0;
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #444 50%,
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+.navbar-visible {
+  top: 0;
+}
+.navbar-hidden {
+  top: calc(-1 * var(--navbar-height));
+}
+
+/* --- 内容居中容器 --- */
+.navbar-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: var(--navbar-height);
+
+  gap: 40px; /* 在 Logo 和主菜单之间创建间距 */
+}
+/* --- 修复结束 --- */
+
+/* --- Logo/Brand 样式 --- */
+.navbar-brand {
+  color: var(--navbar-font-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  letter-spacing: 2px;
+  margin-left: 10rem;
+  text-transform: uppercase;
+}
+.navbar-brand:hover {
+  color: var(--navbar-font-hover-color);
+}
+
+/* --- 导航链接容器 (桌面) --- */
+.navbar-links .nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  margin-right: 10rem;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+/* --- 导航链接样式 --- */
+.nav-link {
+  color: var(--navbar-font-color);
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+.nav-link:hover {
+  color: var(--navbar-font-hover-color);
+}
+
+/* --- 下拉菜单样式 (保持不变) --- */
+.dropdown {
+  position: static;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+
+  /* --- 核心优化 1：调整间距 --- */
+  /* 让子菜单从主导航栏下方 5px 的位置出现，创造呼吸感 */
+  top: calc(var(--navbar-height) + 5px);
+  left: 0;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: none;
+  padding: 10px 10rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  border: none;
+  box-shadow: none;
+  list-style: none;
+  margin: 0;
+  border-radius: 0;
+  opacity: 0;
+  visibility: hidden;
+
+  /* --- 核心优化 2：增加滑动动画 --- */
+  /* 初始状态在 Y 轴向上移动 10px */
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease; /* 为 transform 添加过渡 */
+}
+
+/* --- 核心交互 2：为子菜单添加自己的分割线 --- */
+.dropdown-menu::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #444 50%,
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-menu li {
+  width: auto;
+}
+
+.dropdown-link {
+  color: var(--navbar-font-color);
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  padding: 5px;
+}
+
+.dropdown-link:hover {
+  color: var(--navbar-font-hover-color);
+}
+
+.dropdown-link::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-link:hover::after {
+  transform: translateX(3px) translateY(-3px);
+}
+
+/* --- 汉堡菜单和响应式布局 (保持不变) --- */
+.navbar-toggle {
+  display: none;
+  /* ... */
+}
+/* ... */
+@media (max-width: 768px) {
+  /* ... */
+}
