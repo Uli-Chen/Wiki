@@ -46,10 +46,15 @@ export function Home() {
   const thirtySevenRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const colorbg = new AmbientLightBg({
+    new AmbientLightBg({
       dom: "box", // 对应 div 的 id
       colors: [
-        "#9FE3EE","#1E5880","#103E62","#002848","#051124","#9FE3EE"
+        "#9FE3EE",
+        "#1E5880",
+        "#103E62",
+        "#002848",
+        "#051124",
+        "#9FE3EE",
       ],
       loop: true,
       speed: 0.1,
@@ -172,7 +177,8 @@ export function Home() {
               Light
             </span>{" "}
             is the primary controller of our body's internal clock. <br />
-            Humans havelived in harmony with the Earth's rhythm,<br /> 
+            Humans havelived in harmony with the Earth's rhythm,
+            <br />
             rising with the sun and resting with its setting.
           </p>
         </div>
@@ -188,14 +194,17 @@ export function Home() {
             className="section-img"
           />
           <p className="section-text">
-            In space, however, <br /> the day-night rhythm is completely different.
+            In space, however, <br /> the day-night rhythm is completely
+            different.
           </p>
         </div>
 
-        <div className="section"           
+        <div
+          className="section"
           ref={(el) => {
             if (el) sectionsRef.current[2] = el;
-          }}>
+          }}
+        >
           <div className="text-box">
             <p className="section-text">
               A spacecraft in orbit experiences a sunrise and sunset every
@@ -226,24 +235,24 @@ export function Home() {
             />
           </div>
         </div>
-          <div
-            className="section"
-            ref={(el) => {
-              if (el) sectionsRef.current[3] = el;
-            }}
-          >
-            <img
-              src={"public/Melatonine.png"}
-              alt="intro"
-              className="section-img"
-            />
-            <p className="section-text">
-              Melatonin (MT) is the primary indole hormone secreted by the pineal
-              gland, chemically N-acetyl-5-methoxytryptamine, also known as pineal
-              hormone or melatonin.
-            </p>
-          </div>
+        <div
+          className="section"
+          ref={(el) => {
+            if (el) sectionsRef.current[3] = el;
+          }}
+        >
+          <img
+            src={"public/Melatonine.png"}
+            alt="intro"
+            className="section-img"
+          />
+          <p className="section-text">
+            Melatonin (MT) is the primary indole hormone secreted by the pineal
+            gland, chemically N-acetyl-5-methoxytryptamine, also known as pineal
+            hormone or melatonin.
+          </p>
         </div>
+      </div>
     </div>
   );
 }

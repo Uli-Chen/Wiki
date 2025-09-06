@@ -2,10 +2,9 @@ import "./Header.css";
 
 interface HeaderProps {
   title: string;
-  lead: string;
 }
 
-export function Header({ title, lead }: HeaderProps) {
+export function Header({ title }: HeaderProps) {
   if (title === "Home") {
     return <></>;
   } else {

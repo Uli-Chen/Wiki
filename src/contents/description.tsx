@@ -1,12 +1,7 @@
-import { Inspirations, InspirationLink } from "../components/Inspirations";
 import { ExpandableBar } from "../components/ExpandableBar";
 import { PDFViewer } from "../components/PdfViewer";
 
 export function Description() {
-  const links: InspirationLink[] = [
-    { year: 2024, teamName: "Heidelberg", pageName: "description" },
-  ];
-
   return (
     <div className="wiki-description">
       <h2>Project Description</h2>

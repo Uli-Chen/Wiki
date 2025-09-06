@@ -7,7 +7,6 @@ import { Navbar } from "../../components/Navbar";
 import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
-import { Table } from "react-bootstrap";
 import TableOfContents from "../../components/TableOfContents";
 import BackToTopButton from "../../components/BackToTop";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
@@ -34,14 +33,14 @@ const App = () => {
       {/* Header and PageContent */}
       <Routes>
         {Object.entries(pathMapping).map(
-          ([path, { title, lead, component: Component }]) => (
+          ([path, { title, component: Component }]) => (
             <Route
               key={path}
               path={path}
               element={
                 <>
                   <ReadingProgressBar />
-                  <Header title={title || ""} lead={lead || ""} />
+                  <Header title={title || ""} />
                   <div
                     className={title === "Home" ? "" : "wiki-description"}
                     id="content"
@@ -66,10 +65,7 @@ const App = () => {
           path="*"
           element={
             <>
-              <Header
-                title="Not Found"
-                lead="The requested URL was not found on this server."
-              />
+              <Header title="Not Found" />
               <NotFound />
             </>
           }
