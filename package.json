@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "CC-BY-4.0",
   "type": "module",
+  "homepage": "https://Uli-Chen.github.io/Wiki"，
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
